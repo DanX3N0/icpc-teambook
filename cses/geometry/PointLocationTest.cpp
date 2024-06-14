@@ -14,8 +14,6 @@ typedef long long ll;
 #define forr(i, b, e) for (int i = (int) b, o_o = e; i < (int) o_o; ++i)
 #define sz(x) (int) x.size()
 #define endl '\n'
-#define INF64 ((ll) 1 << 60)
-#define INF32 (1 << 30)
 typedef pair<int,int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
