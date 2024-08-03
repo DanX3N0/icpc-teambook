@@ -26,9 +26,52 @@ typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
 
+const int tam = 2e5 + 7;
+
+vvi tree(tam);
+vi dist(tam, 0);
+
+void dfs(int node, int parent) {
+   for(auto it: tree[node]) {
+      if(it != parent) {
+         dist[it] = dist[node] + 1;
+         dfs(it, node);
+      }
+   }
+}
+
 signed main(){FUN;
   
-  
+   int n;
+   cin >> n;
+
+   fore(i, 0, n - 1) {
+      int a, b;
+      cin >> a >> b;
+      tree[a].pb(b);
+      tree[b].pb(a);
+   }
+
+   dfs(1, 0);
+
+   int maxDist = -1, node = 0;
+
+   fore(i, 1, n + 1) {
+      if(dist[i] > maxDist) {
+         maxDist = dist[i];
+         node = i;
+      }
+   }
+
+   fore(i, 0, n + 1) dist[i] = 0;
+
+   dfs(node, 0);
+
+   fore(i, 0, n + 1) {
+      maxDist = max(maxDist, dist[i]); 
+   }
+
+   cout << maxDist << endl;
 
    re0;
 }

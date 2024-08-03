@@ -1,0 +1,1 @@
+{"name":"Local: asd","url":"c:\\Users\\Daniel\\Desktop\\lucky\\asd.cpp","tests":[{"id":1719181534897,"input":"6 7\n1 6 9 13 18 18\n2 3 8 13 15 21 25\n","output":"1 2 3 6 8 9 13 13 15 18 18 21 25 \n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\asd.cpp","group":"local","local":true}

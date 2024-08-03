@@ -2,8 +2,7 @@
 using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-//#define int long long
-#define re0 return 0
+#define int long long
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -26,9 +25,32 @@ typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
 
+const ll MOD = 1e9 + 7;
+
+ll expo(ll b, ll exp) { 
+  if(b == 0 && exp == 0) return 1;
+  if(exp == 0) return 1;
+  if(exp == 1) return b; 
+  ll ans;
+  if(exp % 2 == 0) {
+    ans = expo(b, exp / 2);
+    ans = (ans * ans) % MOD;
+  } else {
+    ans = (expo(b, exp - 1) * b) % MOD;
+  }
+  return ans;
+}
+
 signed main(){FUN;
   
-  
+  int n; cin >> n;
 
-   re0;
+  fore(i, 0, n) {
+    int a, b;
+    cin >> a >> b;
+    ll ans = expo(a, b);
+    cout << ans << endl;
+  }
+
+  return 0;
 }

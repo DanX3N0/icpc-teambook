@@ -1,0 +1,1 @@
+{"name":"Local: WordCombinations","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\WordCombinations.cpp","tests":[{"id":1720313977559,"input":"ababc\n4\nab\nabab\nc\ncb","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\WordCombinations.cpp","group":"local","local":true}

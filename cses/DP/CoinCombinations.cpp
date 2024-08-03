@@ -11,7 +11,7 @@ typedef long long ll;
 #define f first
 #define s second
 #define fore(i, b, e) for (int i = (int) b, o_o = e; i < (int) o_o; ++i)
-#define rofe(i,a,b) for(int i = (int)b, o_o = a; i >= (int) o_o; --i)
+#define rofe(i, b, e) for (int i = (int) b, o_o = e; i >= (int) o_o; --i)
 #define sz(x) (int) x.size()
 #define endl '\n'
 #define INF64 ((ll) 1 << 60)
@@ -26,30 +26,28 @@ typedef vector<vii> vvii;
 const int INF = numeric_limits<int>::max()/4;
 const double PI = acos(-1);
 
-int solve(int x, int n, vi &c) {
-
-  vi dp((x+1), INF);
-  dp[0] = 0;
-
-  fore(i,1,(x+1)){
-    fore(j,0,n) {
-      if(c[j] > i || dp[i-c[j]]==INF) continue;
-      dp[i]=min(dp[i],dp[i-c[j]]+1);
-    }
-  }
-
-  if(dp[x]!= INF) return dp[x];
-
-  return -1;
-}
+const int MOD = (int)1e9+7;
+vi dp(1000001);
 
 signed main(){FUN;
   
   int n,x;
   cin>>n>>x;
   vi c(n);
+
   fore(i,0,n) cin>>c[i];
-  int ans = solve(x,n,c);
-  cout << ans << endl;
+
+  dp[0] = 1;
+
+  fore(i,0,x+1) fore(j,0,n){
+    if(i-c[j] >= 0) {
+      dp[i] += dp[i-c[j]];
+      dp[i] %= MOD;
+    }
+  }
+
+
+  cout << dp[x] << endl;
+
   return 0;
 }

@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 //#define int long long
-#define re0 return 0
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -27,8 +26,40 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 
 signed main(){FUN;
-  
-  
 
-   re0;
+  int n;
+  cin >> n;
+
+  vii customers(n);
+
+  fore(i, 0, n) {
+    int a, b;
+    cin >> a >> b;
+    customers[i] = {a, b};
+  }
+
+  sort(all(customers));
+
+  vi ans;
+  int curr = 0, room = 1, numberOfRooms = -1;
+
+  fore(i, 0, n) {
+    int t1 = customers[i].f;
+    int t2 = customers[i].s;
+    if(t1 >= curr) {
+      ans.pb(room);
+    } else {
+      room++;
+      ans.pb(room);
+    }
+    curr = max(curr, t2);
+    numberOfRooms = max(numberOfRooms, room);
+  }
+
+  cout << numberOfRooms << endl;
+
+  fore(i, 0, sz(ans)) cout << ans[i] << " ";
+  cout << endl;
+
+  return 0;
 }

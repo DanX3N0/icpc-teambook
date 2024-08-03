@@ -1,0 +1,1 @@
+{"name":"Local: s1p3","url":"c:\\Users\\Daniel\\Desktop\\lucky\\practice\\binarySearch\\s1p3.cpp","tests":[{"id":1719700181587,"input":"5 5\n3 3 5 8 9\n2 4 8 1 10\n","output":"1\n3\n4\n1\n6\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\practice\\binarySearch\\s1p3.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: ConcertTickets","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\sortingAndSearching\\ConcertTickets.cpp","tests":[{"id":1721353757673,"input":"5 3\n5 3 7 8 5\n4 8 3","output":"3\n8\n-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\sortingAndSearching\\ConcertTickets.cpp","group":"local","local":true}

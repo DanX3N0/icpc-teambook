@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 //#define int long long
-#define re0 return 0
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -28,7 +27,20 @@ typedef vector<vii> vvii;
 
 signed main(){FUN;
   
-  
+  int n, m;
+  cin >> n >> m;
 
-   re0;
+  ii start, end;
+
+  fore(i,0,n) {
+    fore(j,0,m) {
+      char c; cin >> c;
+      if(c=='A') start = {i,j};
+      if(c=='B') end = {i,j};
+    }
+  }
+
+  dfs();
+
+  return 0;
 }

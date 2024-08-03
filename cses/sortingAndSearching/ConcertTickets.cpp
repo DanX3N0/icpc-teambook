@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 //#define int long long
-#define re0 return 0
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -27,8 +26,29 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 
 signed main(){FUN;
-  
-  
 
-   re0;
+  int n, m;
+  cin >> n >> m;
+
+  multiset<int> pTickets;
+  fore(i, 0, n) {
+    int data; cin >> data;
+    pTickets.insert(data);
+  }
+
+  vi pCustomers(m);
+  fore(i, 0, m) cin >> pCustomers[i];
+
+  fore(i, 0, m) {
+    int val = pCustomers[i];
+    auto it = pTickets.upper_bound(val);
+    if(it != pTickets.begin()) {
+      cout << *(--it) << endl;
+      pTickets.erase(it);
+    } else {
+      cout << -1 << endl;
+    }
+  }
+
+  return 0;
 }

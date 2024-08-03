@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 //#define int long long
-#define re0 return 0
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -26,9 +25,37 @@ typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
 
-signed main(){FUN;
-  
-  
+bool comp(ii& a, ii& b) {
+  return a.s < b.s;
+}
 
-   re0;
+signed main(){FUN;
+
+  int n;
+  cin >> n;
+
+  vii moviesT;
+
+  fore(i, 0, n) {
+    int a, b;
+    cin >> a >> b;
+    moviesT.pb({a, b});
+  }
+
+  sort(moviesT.begin(), moviesT.end(), comp);
+
+  int time = 0, ans = 0;
+
+  fore(i, 0, n) {
+    int currT = moviesT[i].f;
+    int timeE = moviesT[i].s;
+    if(currT >= time) {
+      time = timeE;
+      ans++;
+    }
+  }
+
+  cout << ans << endl;
+
+  return 0;
 }

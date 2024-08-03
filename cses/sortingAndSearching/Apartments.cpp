@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 //#define int long long
-#define re0 return 0
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple
@@ -28,7 +27,38 @@ typedef vector<vii> vvii;
 
 signed main(){FUN;
   
-  
+  int n, m, k;
+  cin >> n >> m >> k;
 
-   re0;
+  vi a(n);
+  vi b(m); 
+  vi check(m+1, 0);
+
+  //desired apartment size
+  fore(i,0,n) cin >> a[i];
+  //size each apartment
+  fore(i,0,m) cin >> b[i];
+
+  sort(all(a));
+  sort(all(b));
+
+  int i = 0, j = 0, ans = 0;
+
+  while(i < n && j < m) {
+    if(abs(a[i]-b[j]) <= k) {
+      i++;
+      j++;
+      ans++;
+    } else {
+      if(a[i]-b[j] > k) {
+        j++;
+      } else {
+        i++;
+      }
+    }
+  }
+
+  cout << ans << endl;
+
+  return 0;
 }
