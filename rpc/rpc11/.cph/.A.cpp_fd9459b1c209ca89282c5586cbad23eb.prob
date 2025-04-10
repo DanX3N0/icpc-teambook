@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"c:\\Users\\Daniel\\Desktop\\lucky\\rpc\\rpc11\\A.cpp","tests":[{"id":1730570805793,"input":"7 2","output":"3"},{"id":1730570811495,"input":"99 5","output":"19"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\rpc\\rpc11\\A.cpp","group":"local","local":true}

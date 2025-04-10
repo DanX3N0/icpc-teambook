@@ -27,62 +27,12 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
-
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
-
-bool dfs(int v, int p, vi& cycle) {
-
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
-      }
-   }
-   return false;
-}
-
 signed main(){FUN;
   
    int n, m;
    cin >> n >> m;
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
-
-   vi cycle;
-
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
-      }
-   }
-
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
-   }
+   
 
    re0;
 }

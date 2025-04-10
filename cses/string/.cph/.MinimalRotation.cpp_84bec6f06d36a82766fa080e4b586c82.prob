@@ -1,0 +1,1 @@
+{"name":"Local: MinimalRotation","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\MinimalRotation.cpp","tests":[{"id":1723642621504,"input":"acab","output":"abac"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\MinimalRotation.cpp","group":"local","local":true}

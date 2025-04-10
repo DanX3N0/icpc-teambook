@@ -25,59 +25,29 @@ typedef vector<vi> vvi;
 typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
+const int MOD = 1000000007;
+const int TWO_MOD_INV = 500000004;
 
-const int tam = 1e5 + 7;
-
-vvi adj(tam);
-vi assigned(tam, 0);
-
-bool dfs(int node) {
-   int curr = assigned[node];
-   int color = curr == 1 ? 2 : 1;
-   for(auto it: adj[node]) {
-      if(assigned[it] != 0) {
-         if(assigned[it] != color) return false;
-      } else {
-         assigned[it] = color;
-         if(!dfs(it)) return false;
-      }
-   }
-   return true;
+ll divSum(ll start, ll end) {
+   return ((((end - start + 1) % MOD) * ((start + end) % MOD) % MOD) * TWO_MOD_INV % MOD);
 }
 
 signed main(){FUN;
+  
+   ll n;
+   cin >> n;
 
-   int n, m;
-   cin >> n >> m;
+   ll total = 0;
+   ll at = 1;
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
+   while(at <= n) {
+      ll addAmt = n / at;
+      ll lastSame = n / addAmt;
+      total = (total + addAmt * divSum(at, lastSame)) % MOD;
+      at = lastSame + 1;
    }
-
-   bool valid = 1;
-
-   fore(i, 1, n + 1) {
-      if(assigned[i] == 0) {
-         assigned[i] = 1;
-         if(!dfs(i)) {
-            valid = false;
-            break;
-         }
-      }
-   }
-
-   if(valid) {
-      fore(i, 1, n + 1) {
-         cout << assigned[i] << " ";
-      }
-
-      cout << endl;
-   } else {
-      cout << "IMPOSSIBLE" << endl;
-   }
+   
+   cout << total << endl;
 
    re0;
 }

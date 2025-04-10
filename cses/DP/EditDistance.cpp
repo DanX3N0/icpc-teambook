@@ -26,58 +26,39 @@ typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
 
-const int tam = 1e5 + 7;
-
-vvi adj(tam);
-vi assigned(tam, 0);
-
-bool dfs(int node) {
-   int curr = assigned[node];
-   int color = curr == 1 ? 2 : 1;
-   for(auto it: adj[node]) {
-      if(assigned[it] != 0) {
-         if(assigned[it] != color) return false;
-      } else {
-         assigned[it] = color;
-         if(!dfs(it)) return false;
-      }
-   }
-   return true;
-}
-
 signed main(){FUN;
+  
+   string a,b;
+   cin >> a >> b;
 
-   int n, m;
-   cin >> n >> m;
+   int n = a.size();
+   int m = b.size();
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
+   vvi dp(n + 1, vi(m + 1, INT32_MAX));
 
-   bool valid = 1;
+   dp[0][0] = 0;
 
-   fore(i, 1, n + 1) {
-      if(assigned[i] == 0) {
-         assigned[i] = 1;
-         if(!dfs(i)) {
-            valid = false;
-            break;
+   fore(i, 0, n + 1) {
+      fore(j, 0, m + 1) {
+         if(i != 0) {
+            //delete i - 1 from the string
+            dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
          }
+
+         if(j != 0) {
+            //add letter j - 1 of the result to the string
+            dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
+         }
+         //make letter i - 1 equal to letter j - 1
+         if(i != 0 && j != 0) {
+            int newCost = dp[i-1][j-1] + (a[i - 1] != b[j - 1]);
+            dp[i][j] = min(dp[i][j], newCost);
+         }  
+
       }
    }
 
-   if(valid) {
-      fore(i, 1, n + 1) {
-         cout << assigned[i] << " ";
-      }
-
-      cout << endl;
-   } else {
-      cout << "IMPOSSIBLE" << endl;
-   }
+   cout << dp[n][m] << endl;
 
    re0;
 }

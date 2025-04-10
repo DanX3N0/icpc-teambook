@@ -1,0 +1,1 @@
+{"name":"Local: StringMatching","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\StringMatching.cpp","tests":[{"id":1723052753743,"input":"saippuakauppias\npp","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\StringMatching.cpp","group":"local","local":true}

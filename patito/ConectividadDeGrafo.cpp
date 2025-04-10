@@ -27,61 +27,65 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
+const int tam = 57;
 
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
+vi g[tam];
+vi vis(tam, 0);
 
-bool dfs(int v, int p, vi& cycle) {
-
+void dfs(int v) {
    vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
+
+   for(auto it: g[v]) {
+      if(!vis[it]) {
+         dfs(it);
       }
    }
-   return false;
+
 }
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   int t;
+   cin >> t;
+ 
+   while(t--) {
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
+      fore(i,0,sz(vis)) vis[i] = 0;
+      fore(i,0,tam) g[i].clear();
 
-   vi cycle;
+      string eti;
+      cin >> eti;
+      cout << eti << endl;
+      int n = (eti[0] - 'A') + 1;
+      string line;
 
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
+      while(1) {
+         getline(cin, line);
+         if(line.size() == 0) break;
+         int u = (line[0] - 'A') + 1;
+         int v = (line[1] - 'A') + 1;
+         
+         cout << line << endl;
+
+         cout << u << ";;" << v << endl;  
+
+         //g[u].pb(v);
+         //g[v].pb(u);
+
       }
-   }
 
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
+      // int ans = 0;
+
+
+      // fore(i, 1, n + 1) {
+      //    if(!vis[i]) {
+      //       dfs(i);
+      //       ans++;
+      //    }
+      // }
+
+      // cout << ans << endl;
+      // cout << endl;
    }
 
    re0;

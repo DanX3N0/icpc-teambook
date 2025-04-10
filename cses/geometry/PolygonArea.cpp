@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-//#define int long long
+#define int long long
 #define re0 return 0
 #define pb push_back
 #define mp make_pair
@@ -27,9 +27,38 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
+struct point {
+   int x, y;
+   point(int _x, int _y): x(_x), y(_y){}
+};
+
+int shoelaceF(vector<point>& vp) {
+   int area = 0;
+   int n = vp.size();
+   for(int i = 0; i < n ; i++) {
+      int op = (vp[i].x * vp[(i + 1) % n].y) - (vp[i].y * vp[(i + 1) % n].x);
+      area += op;
+   }
+   return abs(area);
+}
+
 signed main(){FUN;
   
-   
+   int n;
+   cin >> n;
+
+   vector<point> vp;
+
+   fore(i, 0, n) {
+      int x, y;
+      cin >> x >> y;
+      point p(x, y);
+      vp.push_back(p);
+   }
+
+   int area = shoelaceF(vp);
+
+   cout << area << endl;
 
    re0;
 }

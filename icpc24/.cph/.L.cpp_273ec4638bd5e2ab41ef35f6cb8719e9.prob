@@ -1,0 +1,1 @@
+{"name":"Local: L","url":"c:\\Users\\Daniel\\Desktop\\lucky\\icpc24\\L.cpp","tests":[{"id":1725475772184,"input":"4\n8 4 2 1","output":"15 0 0 0"},{"id":1725475783347,"input":"4\n12 15 1 20","output":"31 13 4 0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\icpc24\\L.cpp","group":"local","local":true}

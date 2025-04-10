@@ -1,0 +1,1 @@
+{"name":"Local: C","url":"c:\\Users\\Daniel\\Desktop\\lucky\\rpc\\rpc11\\C.cpp","tests":[{"id":1730572597679,"input":"5\nCDXCIX\nID\nIV\nIIIIV\nIIIIIIV","output":"499\n499\n4\n1\n-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\rpc\\rpc11\\C.cpp","group":"local","local":true}

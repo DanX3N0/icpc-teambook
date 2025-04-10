@@ -27,62 +27,58 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
+const int tam = 107;
 
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
+int p[tam], _rank[tam];
 
-bool dfs(int v, int p, vi& cycle) {
+int findParent(int v) {
+   if(p[v] == -1) return v;
+   return p[v] = findParent(p[v]);
+}
 
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
-      }
+void join(int a, int b) {
+
+   a = findParent(a);
+   b = findParent(b);
+
+   if(a == b) return;
+
+   if(_rank[a] > _rank[b]) {
+      p[b] = a;
+      _rank[a] = max(_rank[a] + 1, _rank[b] + 1);
+   } else {
+      p[a] = b;
+      _rank[b] = max(_rank[a] + 1, _rank[b] + 1);
    }
-   return false;
+
 }
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   int t;
+   cin >> t;
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
+   while(t--) {
+
+      clr(p, -1);
+      clr(_rank, 0);
+
+      int n, m;
+      cin >> n >> m;
+
+      fore(i,0,m) {
+         int u, v;
+         cin >> u >> v;
+         join(u, v);
+      } 
+
+      int x, y;
+      cin >> x >> y;
+
+      if(findParent(x) == findParent(y)) cout << "SI" << endl;
+      else cout << "NO" << endl;
+
    }
-
-   vi cycle;
-
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
-      }
-   }
-
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
-   }
-
+ 
    re0;
 }

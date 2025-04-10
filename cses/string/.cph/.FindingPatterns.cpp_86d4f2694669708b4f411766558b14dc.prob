@@ -1,0 +1,1 @@
+{"name":"Local: FindingPatterns","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\FindingPatterns.cpp","tests":[{"id":1724020629474,"input":"aybabtu\n3\nbab\nabc\nayba","output":"YES\nNO\nYES"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\FindingPatterns.cpp","group":"local","local":true}

@@ -25,59 +25,49 @@ typedef vector<vi> vvi;
 typedef vector<vii> vvii;
 //const int INF = numeric_limits<int>::max()/4;
 //const double PI = acos(-1);
+//const int MOD = 1000000007;
 
-const int tam = 1e5 + 7;
+const ll MOD = 1e9 + 7;
+const ll prime1 = 31;
+const ll prime2 = 37;
+const int MAX = 1e6 + 5;
 
-vvi adj(tam);
-vi assigned(tam, 0);
+ll pow1[MAX], pow2[MAX], ph1, ph2, sh1, sh2;
 
-bool dfs(int node) {
-   int curr = assigned[node];
-   int color = curr == 1 ? 2 : 1;
-   for(auto it: adj[node]) {
-      if(assigned[it] != 0) {
-         if(assigned[it] != color) return false;
-      } else {
-         assigned[it] = color;
-         if(!dfs(it)) return false;
-      }
+void solve(string& s, int n) {
+   
+   //init powers p1 & p2
+   pow1[0] = pow2[0] = 1;
+   fore(i, 1, n) {
+      pow1[i] = (pow1[i - 1] * prime1) % MOD;
+      pow2[i] = (pow2[i - 1] * prime2) % MOD;
    }
-   return true;
+
+   //calculate the preffix and suffix hashes
+   fore(i, 0, n - 1) {
+      int l = (s[i] - 'a' + 1);
+      int r = (s[n - i - 1] - 'a' + 1);
+
+      ph1 = (ph1 + l * pow1[i]) % MOD;
+      ph2 = (ph2 + l * pow2[i]) % MOD;
+      sh1 = (sh1 * prime1 + r) % MOD;
+      sh2 = (sh2 * prime2 + r) % MOD;
+
+      //if are equals, print the length of borders
+      if(ph1 == sh1 && ph2 == sh2) cout << i + 1 << ' ';
+   }
+
 }
 
 signed main(){FUN;
+  
+   string s;
+   cin >> s;
 
-   int n, m;
-   cin >> n >> m;
+   int n = s.size();
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
-
-   bool valid = 1;
-
-   fore(i, 1, n + 1) {
-      if(assigned[i] == 0) {
-         assigned[i] = 1;
-         if(!dfs(i)) {
-            valid = false;
-            break;
-         }
-      }
-   }
-
-   if(valid) {
-      fore(i, 1, n + 1) {
-         cout << assigned[i] << " ";
-      }
-
-      cout << endl;
-   } else {
-      cout << "IMPOSSIBLE" << endl;
-   }
+   solve(s, n);
+   cout << endl;
 
    re0;
 }

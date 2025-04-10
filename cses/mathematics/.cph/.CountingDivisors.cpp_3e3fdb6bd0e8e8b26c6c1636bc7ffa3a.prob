@@ -1,0 +1,1 @@
+{"name":"Local: CountingDivisors","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\mathematics\\CountingDivisors.cpp","tests":[{"id":1723931254109,"input":"3\n16\n17\n18","output":"5\n2\n6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\mathematics\\CountingDivisors.cpp","group":"local","local":true}

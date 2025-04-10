@@ -81,15 +81,20 @@ signed main() {
     join(i1, i2);
   }
 
-  fore(i, 0, n + 1) cout << p[i] << "#" << cant[i] << endl;
+  set<int> st;
 
-  //int ans = 1;
-  //fore(i, 1, n + 1) {
-  //  if (cant[i] > 0)
-  //    ans = ((ans % MOD) * (cant[i] % MOD)) % MOD;
-  //}
-//
-  //cout << ans << endl;
+  int ans = 1;
+
+  fore(i, 1, n + 1) {
+    if(st.count(findParent(i))) {
+      continue;
+    } else {
+      st.insert(findParent(i));
+      ans = (ans * cant[findParent(i)]) % MOD;
+    }
+  }
+
+  cout << ans << endl;
 
   return 0;
 }

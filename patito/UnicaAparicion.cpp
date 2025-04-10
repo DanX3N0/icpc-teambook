@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 #define FUN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-//#define int long long
+#define int long long
 #define re0 return 0
 #define pb push_back
 #define mp make_pair
@@ -29,7 +29,24 @@ typedef vector<vii> vvii;
 
 signed main(){FUN;
   
-   
+   int n; cin >> n;
+
+   vi arr(n);
+
+   fore(i, 0, n) cin >> arr[i];
+
+   multiset<int> ms;
+
+   fore(i,0,n) ms.insert(arr[i]);
+
+   int ans;
+
+   fore(i,0,n) if(ms.count(arr[i]) == 1) {
+      ans = arr[i]; 
+      break;
+   }
+
+   cout << ans << endl;
 
    re0;
 }

@@ -27,62 +27,36 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
-
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
-
-bool dfs(int v, int p, vi& cycle) {
-
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
+vi zF(string& s) {
+   int n = s.size();
+   vi z(n);
+   int l = 0, r = 0;
+   for(int i = 1; i < n; i++) {
+      if(i <= r) z[i] = min(z[i - l], r - i + 1);
+      while(i + z[i] < n && s[z[i]] == s[i + z[i]]) z[i]++;
+      if(i + z[i] - 1 > r) {
+         l = i;
+         r = i + z[i] - 1;
       }
    }
-   return false;
+   return z;
 }
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   string a, b;
+   cin >> a >> b;
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
+   string s = b + '#' + a;
+   vi z = zF(s);
+
+   int ans = 0;
+   for(int l: z) {
+      //cout << l << endl;
+      if(l == b.size()) ans++;
    }
 
-   vi cycle;
-
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
-      }
-   }
-
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
-   }
+   cout << ans << endl;
 
    re0;
 }

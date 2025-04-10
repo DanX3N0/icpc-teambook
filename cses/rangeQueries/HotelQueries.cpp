@@ -27,61 +27,45 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
+const int MAX = 200007;
 
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
+int n;
+int segtree[4 * MAX], a[MAX];
 
-bool dfs(int v, int p, vi& cycle) {
-
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
-      }
+void build(int l = 1, int r = n, int node = 1) {
+   if(l == r) segtree[node] = a[l];
+   else {
+      int mid = (l + r) / 2;
+      build(l, mid, node * 2);
+      build(mid + 1, r, node * 2 + 1);
+      segtree[node] = max(segtree[node * 2], segtree[node * 2 + 1]);
    }
-   return false;
+}
+
+void queryUpdate(int val, int l = 1, int r = n, int node = 1) {
+   if(l == r) {
+      segtree[node] -= val;
+      cout << l << ' ';
+   } else {
+      int mid = (l + r) / 2;
+      if(segtree[node * 2] >= val) queryUpdate(val, l, mid, node * 2);
+      else queryUpdate(val, mid + 1, r, node * 2 + 1);
+      segtree[node] = max(segtree[node * 2], segtree[node * 2 + 1]);
+   }
 }
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   int q;
+   cin >> n >> q;
+   fore(i, 1, n + 1) cin >> a[i];
+   build();
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
-
-   vi cycle;
-
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
-      }
-   }
-
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
+   while(q--) {
+      int x;
+      cin >> x;
+      if(segtree[1] < x) cout << "0 ";
+      else queryUpdate(x); 
    }
 
    re0;

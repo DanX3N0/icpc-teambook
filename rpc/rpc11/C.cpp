@@ -27,61 +27,56 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
+int romanToArabic(string s) {
+   map<char, int> mp;
 
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
+   mp.insert({'I', 1});
+   mp.insert({'V', 5});
+   mp.insert({'X', 10});
+   mp.insert({'L', 50});
+   mp.insert({'C', 100});
+   mp.insert({'D', 500});
+   mp.insert({'M', 1000});
 
-bool dfs(int v, int p, vi& cycle) {
+   char prevC = s[0];
 
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
+   int ans = mp[prevC];
+
+   fore(i,1,s.size()) {
+      char c = s[i];
+      if(c == prevC) {
+         ans += mp[c];
+      } else {
+         if(mp[c] > mp[prevC] && mp[c] > ans) {
+            ans = mp[c] - ans;
+         } else if(ans < mp[c]){
+            ans = mp[c] - ans;
+         } else {
+            ans += mp[c];
          }
-         cycle.pb(u);
-         return true;
       }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
-      }
+      prevC = c;
+
    }
-   return false;
+
+   return ans;
+
 }
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   int n;
+   cin >> n;
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
+   while(n--) {
+      string s;
+      cin >> s;
 
-   vi cycle;
+      int ans = romanToArabic(s);
 
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
-      }
-   }
+      cout << ans << endl;
+      cout << "============" << endl;
 
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
    }
 
    re0;

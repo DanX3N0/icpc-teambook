@@ -1,0 +1,1 @@
+{"name":"Local: FindingBoders","url":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\FindingBoders.cpp","tests":[{"id":1723490211543,"input":"abcababcab","output":"2 5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Daniel\\Desktop\\lucky\\cses\\string\\FindingBoders.cpp","group":"local","local":true}

@@ -27,62 +27,39 @@ typedef vector<vii> vvii;
 //const double PI = acos(-1);
 //const int MOD = 1000000007;
 
-const int MAX = 100007;
-
-vi adj[MAX];
-bool vis[MAX];
-int parent[MAX];
-
-bool dfs(int v, int p, vi& cycle) {
-
-   vis[v] = 1;
-   parent[v] = p;
-   for(auto u: adj[v]) {
-      if(u == p) continue;
-      if(vis[u]) {
-         cycle.pb(u);
-         for(int cur = v; cur != u; cur = parent[cur]) {
-            cycle.pb(cur);
-         }
-         cycle.pb(u);
-         return true;
-      }
-      if(!vis[u] && dfs(u, v, cycle)) {
-         return true;
-      }
-   }
-   return false;
-}
+const ll prime = 455577;
+const ll MOD = 1e9 + 7;
 
 signed main(){FUN;
   
-   int n, m;
-   cin >> n >> m;
+   string s;
+   cin >> s;
+   int n = s.size();
 
-   fore(i, 0, m) {
-      int a, b;
-      cin >> a >> b;
-      adj[a].pb(b);
-      adj[b].pb(a);
-   }
+   vector<ll> basePow(n);
+   basePow[0] = 1;
+   fore(i, 1, n) basePow[i] = (basePow[i - 1] * prime) % MOD;
 
-   vi cycle;
+   vector<ll> pref(n + 1);
+   fore(i, 1, n + 1) pref[i] = (pref[i - 1] * prime + s[i - 1]) % MOD;
 
-   fore(i, 1, n + 1) {
-      if(!vis[i] && dfs(i, -1, cycle)) {
-         break;
+   auto getHash = [&](int l, int r) -> ll{
+      ll h = (pref[r + 1] - (basePow[r - l + 1] * pref[l] % MOD) % MOD);
+      return h < 0 ? (h + MOD) : h;
+   };
+
+   fore(i, 0, n) {
+      int currIdx = 0;
+      bool ok = 1;
+      while(currIdx < n) {
+         int len = min(i + 1, n - currIdx);
+         ok &= getHash(0, len - 1) == getHash(currIdx, currIdx + len - 1);
+         currIdx += len;
       }
+      if(ok) cout << i + 1 << ' ';
    }
 
-   if(cycle.empty()) {
-      cout << "IMPOSSIBLE" << endl;
-   } else {
-      cout << cycle.size() << endl;
-      for(int v: cycle) {
-         cout << v << " ";
-      }
-      cout << endl;
-   }
+   cout << endl;
 
    re0;
 }
